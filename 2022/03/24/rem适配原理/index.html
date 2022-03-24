@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://maggicmuling.github.io">
-  <title>lilusheng的技术博客</title>
+  <title>rem适配原理 | lilusheng的技术博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="擅长各项前端技能，深入研究移动端开发与前端性能。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="lilusheng的技术博客">
-<meta property="og:url" content="https://maggicmuling.github.io/index.html">
+  <meta name="description" content="rem 适配原理什么是remrem是根元素字体的单位，比如 html{font-size:16px;} ，1rem相当于16px。不仅仅可以给字体用，其他px单位的都可以用，比如设padding:2rem ，相当于32px。 rem有什么用放弃px单位，使用rem作为单位，这样在不同尺寸的设备上，通过修改根节点的font-size大小，实现等比例缩放 12345678910111213141516">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rem适配原理">
+<meta property="og:url" content="https://maggicmuling.github.io/2022/03/24/rem%E9%80%82%E9%85%8D%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="lilusheng的技术博客">
-<meta property="og:description" content="擅长各项前端技能，深入研究移动端开发与前端性能。">
+<meta property="og:description" content="rem 适配原理什么是remrem是根元素字体的单位，比如 html{font-size:16px;} ，1rem相当于16px。不仅仅可以给字体用，其他px单位的都可以用，比如设padding:2rem ，相当于32px。 rem有什么用放弃px单位，使用rem作为单位，这样在不同尺寸的设备上，通过修改根节点的font-size大小，实现等比例缩放 12345678910111213141516">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-24T12:52:04.000Z">
+<meta property="article:modified_time" content="2022-03-24T12:57:32.145Z">
 <meta property="article:author" content="lilusheng">
 <meta property="article:tag" content="前端,js,jquery,javascript,html5,开发者,程序猿,编程,代码,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
 <meta name="twitter:card" content="summary">
@@ -153,16 +155,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-rem适配原理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-rem适配原理" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/24/rem%E9%80%82%E9%85%8D%E5%8E%9F%E7%90%86/">rem适配原理</a>
+    <h1 class="article-title" itemprop="name">
+      rem适配原理
     </h1>
   
 
@@ -192,6 +192,27 @@
       
 
       
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
     </div>
     <div class="article-info article-info-index">
       
@@ -199,16 +220,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/24/rem%E9%80%82%E9%85%8D%E5%8E%9F%E7%90%86/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://maggicmuling.github.io/2022/03/24/rem%E9%80%82%E9%85%8D%E5%8E%9F%E7%90%86/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2022/03/22/react%E8%84%9A%E6%89%8B%E6%9E%B6%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">react脚手架配置代理总结</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -228,164 +308,14 @@
 
 
 
-
   
-    <article id="post-react脚手架配置代理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/22/react%E8%84%9A%E6%89%8B%E6%9E%B6%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/">react脚手架配置代理总结</a>
-    </h1>
   
 
-        
-        <a href="/2022/03/22/react%E8%84%9A%E6%89%8B%E6%9E%B6%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/" class="archive-article-date">
-  	<time datetime="2022-03-22T15:37:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="react脚手架配置代理总结"><a href="#react脚手架配置代理总结" class="headerlink" title="react脚手架配置代理总结"></a>react脚手架配置代理总结</h1><h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><blockquote>
-<p>在package.json中追加如下配置</p>
-</blockquote>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;proxy&quot;</span><span class="punctuation">:</span><span class="string">&quot;http://localhost:5000&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>说明：</p>
-<ol>
-<li>优点：配置简单，前端请求资源时可以不加任何前缀。</li>
-<li>缺点：不能配置多个代理。</li>
-<li>工作方式：上述方式配置代理，当请求了3000不存在的资源时，那么该请求会转发给5000 （优先匹配前端资源）</li>
-</ol>
-<h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><ol>
-<li><p>第一步：创建代理配置文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在src下创建配置文件：src/setupProxy.js</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写setupProxy.js配置具体代理规则：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> proxy = <span class="built_in">require</span>(<span class="string">&#x27;http-proxy-middleware&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span>(<span class="params">app</span>) &#123;</span><br><span class="line">  app.<span class="title function_">use</span>(</span><br><span class="line">    <span class="title function_">proxy</span>(<span class="string">&#x27;/api1&#x27;</span>, &#123;  <span class="comment">//api1是需要转发的请求(所有带有/api1前缀的请求都会转发给5000)</span></span><br><span class="line">      <span class="attr">target</span>: <span class="string">&#x27;http://localhost:5000&#x27;</span>, <span class="comment">//配置转发目标地址(能返回数据的服务器地址)</span></span><br><span class="line">      <span class="attr">changeOrigin</span>: <span class="literal">true</span>, <span class="comment">//控制服务器接收到的请求头中host字段的值</span></span><br><span class="line">      <span class="comment">/*</span></span><br><span class="line"><span class="comment">      	changeOrigin设置为true时，服务器收到的请求头中的host为：localhost:5000</span></span><br><span class="line"><span class="comment">      	changeOrigin设置为false时，服务器收到的请求头中的host为：localhost:3000</span></span><br><span class="line"><span class="comment">      	changeOrigin默认值为false，但我们一般将changeOrigin值设为true</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">      <span class="attr">pathRewrite</span>: &#123;<span class="string">&#x27;^/api1&#x27;</span>: <span class="string">&#x27;&#x27;</span>&#125; <span class="comment">//去除请求前缀，保证交给后台服务器的是正常请求地址(必须配置)</span></span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="title function_">proxy</span>(<span class="string">&#x27;/api2&#x27;</span>, &#123; </span><br><span class="line">      <span class="attr">target</span>: <span class="string">&#x27;http://localhost:5001&#x27;</span>,</span><br><span class="line">      <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">pathRewrite</span>: &#123;<span class="string">&#x27;^/api2&#x27;</span>: <span class="string">&#x27;&#x27;</span>&#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>说明：</p>
-<ol>
-<li>优点：可以配置多个代理，可以灵活的控制请求是否走代理。</li>
-<li>缺点：配置繁琐，前端请求资源时必须加前缀。</li>
-</ol>
-<p>￼<br>路由组件与一般组件</p>
-<p>1.写法不同：<br>    一般组件：<Demo/><br>    路由组件：<Route path="/Demo" component={Demo} /><br>2.存放文件夹位置不同：<br>    一般组件：components<br>    路由组件：pages<br>3.接收到的props不同（根本区别）：<br>    一般组件：组件标签写什么值就传什么值<br>    路由组件：一定会接收到路由的信息（history、location、match等），也可以传自定义的属性值</p>
-<p>Link<br>现在，我们应用需要在各个页面间切换，如果使用锚点元素实现，在每次点击时，页面被重新加载，React Router提供了<Link>组件用来避免这种状况发生。当 你点击<Link>时，url会更新，组件会被重新渲染，但是页面不会重新加载</p>
-<p><NavLink>是<Link>的一个特定版本，会在匹配上当前的url的时候给已经渲染的元素添加参数，组件的属性有</p>
-<p>activeClassName(string)：设置选中样式，默认值为active<br>activeStyle(object)：当元素被选中时，为此元素添加样式<br>exact(bool)：为true时，只有当导致和完全匹配class和style才会应用<br>strict(bool)：为true时，在确定为位置是否与当前URL匹配时，将考虑位置pathname后的斜线<br>isActive(func)判断链接是否激活的额外逻辑的功能</p>
-<p>￼<br>￼￼￼￼<br>withRouter 加工一般组件，让一般组件具有路由组件所特有的api<br>withRouter的返回值是一个新的组件<br>￼￼<br>添加redux中数组的数据时，原先使用push和unpush  数据添加进去但是页面未刷新，原因是redux底层对返回值做了一个浅比较，使用push数组地址未发生改变，所以不进行页面更新，同时破坏了reduce纯函数的原则</p>
-<p>nanoid 随机生成id不重复可做key值</p>
-<p>￼<br>1.第一种配置代理方式<br>￼<br>Proxy 设置代理<br>￼￼<br>3000是项目的地址，通过package.json 配置proxy代理到5000，然后发送请求时将服务区5000地址更改为3000可自动转为5000发送请求<br>（只能设置一个代理地址）</p>
-<p>2.设置setupProxy来设置代理<br>￼￼<br>可配置多个代理地址</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/22/react%E8%84%9A%E6%89%8B%E6%9E%B6%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-My-first" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/22/My-first/">vue组间通信</a>
-    </h1>
   
 
-        
-        <a href="/2018/03/22/My-first/" class="archive-article-date">
-  	<time datetime="2018-03-22T05:58:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/22/My-first/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
+
   
 
 
@@ -408,8 +338,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
