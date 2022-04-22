@@ -155,6 +155,121 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-axios封装" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>import axios from “axios”;</p>
+<p>const instance &#x3D; axios.create({<br>    baseURL: ‘<a href="http://localhost:3000&#39;">http://localhost:3000&#39;</a>,<br>    timeout: 5000<br>})</p>
+<p>instance.interceptors.request.use((config) &#x3D;&gt; {<br>    &#x2F;&#x2F; console.group(‘全局请求拦截’)<br>    &#x2F;&#x2F; console.log(config);<br>    &#x2F;&#x2F; console.groupEnd()<br>    return config<br>}, error &#x3D;&gt; {<br>    return Promise.reject(error)<br>})</p>
+<p>instance.interceptors.response.use((response) &#x3D;&gt; {<br>    &#x2F;&#x2F; console.group(‘全局响应拦截’)<br>    &#x2F;&#x2F; console.log(response);<br>    &#x2F;&#x2F; console.groupEnd()<br>    if (response.status &#x3D;&#x3D;&#x3D; 200) {<br>        return Promise.resolve(response.data);<br>    } else {<br>        return Promise.reject(response);<br>    }</p>
+<p>}, error &#x3D;&gt; {<br>    if (error.response.status) {<br>        switch (error.response.status) {<br>            &#x2F;&#x2F; 401: 未登录<br>            &#x2F;&#x2F; 未登录则跳转登录页面，并携带当前页面的路径<br>            &#x2F;&#x2F; 在登录成功后返回当前页面，这一步需要在登录页操作。<br>            case 401:<br>                console.log(‘401’)<br>                &#x2F;&#x2F; router.replace({<br>                &#x2F;&#x2F;     path: ‘&#x2F;login’,<br>                &#x2F;&#x2F;     query: {<br>                &#x2F;&#x2F;         redirect: router.currentRoute.fullPath<br>                &#x2F;&#x2F;     }<br>                &#x2F;&#x2F; });<br>                break;</p>
+<pre><code>        // 403 token过期
+        // 登录过期对用户进行提示
+        // 清除本地token和清空vuex中token对象
+        // 跳转登录页面                
+        case 403:
+            console.log(&#39;403&#39;)                 
+
+            //  Toast(&#123;
+            //     message: &#39;登录过期，请重新登录&#39;,
+            //     duration: 1000,
+            //     forbidClick: true
+            // &#125;);
+            // // 清除token
+            // localStorage.removeItem(&#39;token&#39;);
+            // store.commit(&#39;loginSuccess&#39;, null);
+            // // 跳转登录页面，并将要浏览的页面fullPath传过去，登录成功后跳转需要访问的页面 
+            // setTimeout(() =&gt; &#123;                        
+            //     router.replace(&#123;                            
+            //         path: &#39;/login&#39;,                            
+            //         query: &#123; 
+            //             redirect: router.currentRoute.fullPath 
+            //         &#125;                        
+            //     &#125;);                    
+            // &#125;, 1000);                    
+            break; 
+
+        // 404请求不存在
+        case 404:
+            console.log(&#39;404&#39;)                 
+
+            // Toast(&#123;
+            //     message: &#39;网络请求不存在&#39;,
+            //     duration: 1500,
+            //     forbidClick: true
+            // &#125;);
+            break;
+        // 其他错误，直接抛出错误提示
+        case 301:   
+            console.log(&#39;需要登陆&#39;)                 
+            // router.replace(&#123;                        
+            //     path: &#39;/login&#39;,                        
+            //     query: &#123; 
+            //         redirect: router.currentRoute.fullPath 
+            //     &#125;
+            // &#125;);
+            break;
+        default:
+            console.log(&#39;other&#39;)                 
+
+            // Toast(&#123;
+            //     message: error.response.data.message,
+            //     duration: 1500,
+            //     forbidClick: true
+            // &#125;);
+    &#125;
+    return Promise.reject(error.response);
+&#125;
+</code></pre>
+<p>})</p>
+<p>export function get(url, params) {<br>    return instance.get(url, { params })<br>}</p>
+<p>export function post(url, data) {<br>    return instance.post(url, data)<br>}</p>
+<p>export function del(url) {<br>    return instance.delete(url)<br>}</p>
+<p>export function put(url, data) {<br>    return instance.put(url, data)<br>}</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/04/22/axios%E5%B0%81%E8%A3%85/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-this的指向问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

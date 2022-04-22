@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://maggicmuling.github.io">
-  <title>Archives | lilusheng的技术博客</title>
+  <title>lilusheng的技术博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="擅长各项前端技能，深入研究移动端开发与前端性能。">
-<meta property="og:type" content="website">
+  <meta name="description" content="import axios from “axios”; const instance &#x3D; axios.create({    baseURL: ‘http:&#x2F;&#x2F;localhost:3000&#39;,    timeout: 5000}) instance.interceptors.request.use((config) &#x3D;&gt; {    &#x2F;&#x2F; cons">
+<meta property="og:type" content="article">
 <meta property="og:title" content="lilusheng的技术博客">
-<meta property="og:url" content="https://maggicmuling.github.io/archives/index.html">
+<meta property="og:url" content="https://maggicmuling.github.io/2022/04/22/axios%E5%B0%81%E8%A3%85/index.html">
 <meta property="og:site_name" content="lilusheng的技术博客">
-<meta property="og:description" content="擅长各项前端技能，深入研究移动端开发与前端性能。">
+<meta property="og:description" content="import axios from “axios”; const instance &#x3D; axios.create({    baseURL: ‘http:&#x2F;&#x2F;localhost:3000&#39;,    timeout: 5000}) instance.interceptors.request.use((config) &#x3D;&gt; {    &#x2F;&#x2F; cons">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-21T16:04:02.534Z">
+<meta property="article:modified_time" content="2022-04-21T17:15:58.663Z">
 <meta property="article:author" content="&#x2F;img&#x2F;avatar.jpg">
 <meta property="article:tag" content="前端,js,jquery,javascript,html5,开发者,程序猿,编程,代码,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
 <meta name="twitter:card" content="summary">
@@ -153,215 +155,208 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-axios封装" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>import axios from “axios”;</p>
+<p>const instance &#x3D; axios.create({<br>    baseURL: ‘<a href="http://localhost:3000&#39;">http://localhost:3000&#39;</a>,<br>    timeout: 5000<br>})</p>
+<p>instance.interceptors.request.use((config) &#x3D;&gt; {<br>    &#x2F;&#x2F; console.group(‘全局请求拦截’)<br>    &#x2F;&#x2F; console.log(config);<br>    &#x2F;&#x2F; console.groupEnd()<br>    return config<br>}, error &#x3D;&gt; {<br>    return Promise.reject(error)<br>})</p>
+<p>instance.interceptors.response.use((response) &#x3D;&gt; {<br>    &#x2F;&#x2F; console.group(‘全局响应拦截’)<br>    &#x2F;&#x2F; console.log(response);<br>    &#x2F;&#x2F; console.groupEnd()<br>    if (response.status &#x3D;&#x3D;&#x3D; 200) {<br>        return Promise.resolve(response.data);<br>    } else {<br>        return Promise.reject(response);<br>    }</p>
+<p>}, error &#x3D;&gt; {<br>    if (error.response.status) {<br>        switch (error.response.status) {<br>            &#x2F;&#x2F; 401: 未登录<br>            &#x2F;&#x2F; 未登录则跳转登录页面，并携带当前页面的路径<br>            &#x2F;&#x2F; 在登录成功后返回当前页面，这一步需要在登录页操作。<br>            case 401:<br>                console.log(‘401’)<br>                &#x2F;&#x2F; router.replace({<br>                &#x2F;&#x2F;     path: ‘&#x2F;login’,<br>                &#x2F;&#x2F;     query: {<br>                &#x2F;&#x2F;         redirect: router.currentRoute.fullPath<br>                &#x2F;&#x2F;     }<br>                &#x2F;&#x2F; });<br>                break;</p>
+<pre><code>        // 403 token过期
+        // 登录过期对用户进行提示
+        // 清除本地token和清空vuex中token对象
+        // 跳转登录页面                
+        case 403:
+            console.log(&#39;403&#39;)                 
+
+            //  Toast(&#123;
+            //     message: &#39;登录过期，请重新登录&#39;,
+            //     duration: 1000,
+            //     forbidClick: true
+            // &#125;);
+            // // 清除token
+            // localStorage.removeItem(&#39;token&#39;);
+            // store.commit(&#39;loginSuccess&#39;, null);
+            // // 跳转登录页面，并将要浏览的页面fullPath传过去，登录成功后跳转需要访问的页面 
+            // setTimeout(() =&gt; &#123;                        
+            //     router.replace(&#123;                            
+            //         path: &#39;/login&#39;,                            
+            //         query: &#123; 
+            //             redirect: router.currentRoute.fullPath 
+            //         &#125;                        
+            //     &#125;);                    
+            // &#125;, 1000);                    
+            break; 
+
+        // 404请求不存在
+        case 404:
+            console.log(&#39;404&#39;)                 
+
+            // Toast(&#123;
+            //     message: &#39;网络请求不存在&#39;,
+            //     duration: 1500,
+            //     forbidClick: true
+            // &#125;);
+            break;
+        // 其他错误，直接抛出错误提示
+        case 301:   
+            console.log(&#39;需要登陆&#39;)                 
+            // router.replace(&#123;                        
+            //     path: &#39;/login&#39;,                        
+            //     query: &#123; 
+            //         redirect: router.currentRoute.fullPath 
+            //     &#125;
+            // &#125;);
+            break;
+        default:
+            console.log(&#39;other&#39;)                 
+
+            // Toast(&#123;
+            //     message: error.response.data.message,
+            //     duration: 1500,
+            //     forbidClick: true
+            // &#125;);
+    &#125;
+    return Promise.reject(error.response);
+&#125;
+</code></pre>
+<p>})</p>
+<p>export function get(url, params) {<br>    return instance.get(url, { params })<br>}</p>
+<p>export function post(url, data) {<br>    return instance.post(url, data)<br>}</p>
+<p>export function del(url) {<br>    return instance.delete(url)<br>}</p>
+<p>export function put(url, data) {<br>    return instance.put(url, data)<br>}</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/04/22/axios%E5%B0%81%E8%A3%85/" class="archive-article-date">
-  	<time datetime="2022-04-21T16:04:02.534Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/04/01/this%E7%9A%84%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2022-04-01T15:45:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/04/01/this%E7%9A%84%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98/">this的指向问题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/25/%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2022-03-25T08:26:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/25/%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98/">汉诺塔问题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/24/js%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85/" class="archive-article-date">
-  	<time datetime="2022-03-24T13:06:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/24/js%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85/">js中的闭包</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/24/rem%E9%80%82%E9%85%8D%E5%8E%9F%E7%90%86/" class="archive-article-date">
-  	<time datetime="2022-03-24T12:52:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/24/rem%E9%80%82%E9%85%8D%E5%8E%9F%E7%90%86/">rem适配原理</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/22/react%E8%84%9A%E6%89%8B%E6%9E%B6%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/" class="archive-article-date">
-  	<time datetime="2022-03-22T15:37:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/22/react%E8%84%9A%E6%89%8B%E6%9E%B6%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/">react脚手架配置代理总结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/22/My-first/" class="archive-article-date">
-  	<time datetime="2018-03-22T05:58:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/22/My-first/">vue组间通信</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://maggicmuling.github.io/2022/04/22/axios%E5%B0%81%E8%A3%85/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2022/04/01/this%E7%9A%84%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">this的指向问题</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -384,8 +379,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
